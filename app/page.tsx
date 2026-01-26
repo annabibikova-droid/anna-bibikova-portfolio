@@ -1,65 +1,138 @@
-import Image from "next/image";
+const projects = [
+  {
+    title: "Mobile RT",
+    description:
+      "Modernization of a real-time drilling mobile app for faster field workflows.",
+    tags: ["2025", "Mobile", "Operational UX"],
+  },
+  {
+    title: "DBA Panels",
+    description:
+      "Monitoring panels for real-time drilling analytics across Rigsense + WellData 4.0.",
+    tags: ["2024–2025", "Monitoring", "Analytics"],
+  },
+  {
+    title: "Advanced Filtering",
+    description:
+      "Flexible filtering system for streaming + historical telemetry dashboards.",
+    tags: ["2025", "Data UX", "Dashboards"],
+  },
+  {
+    title: "Alarms KPI Dashboard",
+    description:
+      "Fleet-level alarm health KPIs and chronic asset insights for reliability teams.",
+    tags: ["2026", "Reliability", "KPIs"],
+  },
+];
+
+function Tag({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full border border-neutral-300 px-2.5 py-1 text-[11px] leading-none text-neutral-700">
+      {children}
+    </span>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
+    <main className="mx-auto max-w-[1600px] px-6 pt-8">
+      {/* Top row (quiet, lots of whitespace) */}
+     <header className="mx-auto max-w-[1600px] px-4 md:px-6 pt-8">
+
+        <div className="flex items-start justify-between">
+          <div className="text-sm text-neutral-700">Anna Bibikova</div>
           <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/about"
+            className="text-sm text-neutral-700 hover:text-neutral-900"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+            ↳ About
           </a>
         </div>
-      </main>
-    </div>
+
+        {/* Intro copy */}
+        <p className="mt-6 max-w-[520px] text-[16px] leading-6 text-neutral-700">
+          Product / UX designer designing data-heavy tools for operational teams. I
+          focus on dashboards, monitoring, and workflow design that helps engineers
+          explore and act without exporting or leaving the system.
+        </p>
+      </header>
+
+      {/* Project grid */}
+      <section className="mx-auto max-w-[1600px] px-3 md:px-4 pb-20 pt-10">
+        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
+          {projects.map((p) => (
+            <a
+              key={p.title}
+              href="#"
+              className="group block"
+              aria-label={`Open case study: ${p.title}`}
+            >
+              {/* Big image tile */}
+              <div className="relative overflow-hidden rounded-2xl bg-neutral-50 ring-1 ring-neutral-200/70">
+  {/* “Image” placeholder */}
+  <div className="aspect-[16/10] w-full transition duration-300 ease-out group-hover:scale-[1.01] group-hover:brightness-[0.98]" />
+
+  {/* subtle gradient to make it feel less empty */}
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/[0.02] to-black/[0.06]" />
+</div>
+
+
+              {/* Title + description */}
+              <div className="mt-4">
+                <div className="text-sm font-medium text-neutral-900">
+                  {p.title}
+                </div>
+                <div className="mt-1 text-sm leading-6 text-neutral-700">
+                  {p.description}
+                </div>
+
+                {/* Tags */}
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {p.tags.map((t) => (
+                    <Tag key={t}>{t}</Tag>
+                  ))}
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer columns (simple, editorial) */}
+      <footer className="mx-auto max-w-6xl px-6 pb-16">
+        <div className="border-t border-neutral-200 pt-10">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+            <div>
+              <div className="text-xs uppercase tracking-wider text-neutral-500">
+                Contact
+              </div>
+              <div className="mt-3 space-y-2 text-sm text-neutral-700">
+                <a className="block hover:text-neutral-900" href="mailto:youremail@example.com">
+                  ↳ Email
+                </a>
+                <a className="block hover:text-neutral-900" href="#">
+                  ↳ LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div>
+              <div className="text-xs uppercase tracking-wider text-neutral-500">
+                Focus
+              </div>
+              <div className="mt-3 space-y-1 text-sm text-neutral-700">
+                <div>Operational dashboards</div>
+                <div>Real-time monitoring</div>
+                <div>Data filtering & UX systems</div>
+              </div>
+            </div>
+
+            <div className="text-sm text-neutral-500 md:text-right">
+              © {new Date().getFullYear()} Anna Bibikova
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   );
 }
